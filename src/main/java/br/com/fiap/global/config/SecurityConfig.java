@@ -26,6 +26,7 @@ public class SecurityConfig {
 //                    .requestMatchers(HttpMethod.POST, "/api/usuario/login").permitAll()
 //                    .anyRequest().authenticated()
                 .authorizeHttpRequests().anyRequest().permitAll() // necessário permitir para funcionar já que o sistema de autorização não está pronto no front
+                .and().headers().frameOptions().disable()
                 .and()
                 .csrf().disable()
                 .formLogin().disable()
