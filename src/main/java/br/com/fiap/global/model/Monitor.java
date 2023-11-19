@@ -15,8 +15,10 @@ import java.util.List;
 @Entity
 @Table(name = "monitor")
 public class Monitor {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @OneToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
     private Usuario usuario;

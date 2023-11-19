@@ -16,6 +16,9 @@ import java.util.List;
 @Table(name = "paciente")
 public class Paciente {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @OneToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
     private Usuario usuario;

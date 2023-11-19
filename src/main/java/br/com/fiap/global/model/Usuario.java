@@ -1,5 +1,6 @@
 package br.com.fiap.global.model;
 
+import br.com.fiap.global.utils.UsuarioType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,6 +28,5 @@ public class Usuario {
     private String telefone;
 
     @Column(nullable = false)
-    private String tipoUsuario; // TODO : implementar num ENUM
-
+    private String tipoUsuario;
 }
