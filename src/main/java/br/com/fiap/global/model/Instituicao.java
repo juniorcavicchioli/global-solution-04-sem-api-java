@@ -22,14 +22,12 @@ public class Instituicao {
     @OneToMany(mappedBy = "instituicao")
     private List<Monitor> monitores;
 
-    @OneToMany(mappedBy = "instituicao")
-    private List<Moderador> moderadores;
+    @ManyToOne
+    @JoinColumn(name = "id_moderador", referencedColumnName = "id_usuario", nullable = false)
+    private Moderador moderador;
 
     @Column(nullable = false)
     private String telefone;
     @Column(nullable = false)
     private String endereco;
-
-//    private String cpnj;
-//    private String razaoSocial;
 }

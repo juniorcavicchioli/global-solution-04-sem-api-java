@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,7 +20,6 @@ public class Moderador {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
     private Usuario usuario;
 
-    @ManyToOne
-    @JoinColumn(name = "id_instituicao", referencedColumnName = "id", nullable = false)
-    private Instituicao instituicao;
+    @OneToMany(mappedBy = "moderador")
+    private List<Instituicao> instituicoes;
 }
