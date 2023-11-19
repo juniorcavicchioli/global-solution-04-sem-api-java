@@ -18,5 +18,6 @@ public class Monitor {
     private Instituicao instituicao;
 
     @ManyToMany(mappedBy = "monitores")
+    @Column(nullable = false)
     private List<Paciente> pacientes;
 }

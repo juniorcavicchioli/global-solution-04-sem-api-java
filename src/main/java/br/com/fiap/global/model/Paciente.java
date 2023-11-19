@@ -26,16 +26,28 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente")
     private List<DadosIoT> dadosIoTList;
 
+    @Column(nullable = false)
     private String idade;
+    @Column(nullable = false)
     private String sexoBiologico;
+    @Column(nullable = false)
     private String genero;
+    @Column(nullable = false)
     private String colesterol;
+    @Column(nullable = false)
     private String triglicerol;
+    @Column(nullable = false)
     private String diabete;
+    @Column(nullable = false)
     private String historicoFamiliar;
+    @Column(nullable = false)
     private String fumante;
+    @Column(nullable = false)
     private String obeso;
+    @Column(nullable = false)
     private String consumoAlcool;
+    @Column(nullable = false)
     private String dieta;
+    @Column(nullable = false)
     private String usoMedicamentos;
 }

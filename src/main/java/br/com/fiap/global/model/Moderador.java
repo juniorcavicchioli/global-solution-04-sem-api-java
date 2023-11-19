@@ -11,6 +11,6 @@ public class Moderador {
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "instituicao_id", nullable = false)
+    @JoinColumn(name = "id_instituicao", referencedColumnName = "id", nullable = false)
     private Instituicao instituicao;
 }

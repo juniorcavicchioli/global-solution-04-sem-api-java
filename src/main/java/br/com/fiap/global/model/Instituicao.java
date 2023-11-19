@@ -17,10 +17,11 @@ public class Instituicao {
     @OneToMany(mappedBy = "instituicao")
     private List<Moderador> moderadores;
 
+    @Column(nullable = false)
     private String telefone;
+    @Column(nullable = false)
     private String endereco;
 
-    private String moderador;
 //    private String cpnj;
 //    private String razaoSocial;
 }

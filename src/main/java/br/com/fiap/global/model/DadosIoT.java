@@ -10,9 +10,11 @@ public class DadosIoT {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_paciente", referencedColumnName = "id_usuario")
+    @JoinColumn(name = "id_paciente", referencedColumnName = "id_usuario", nullable = false)
     private Paciente paciente;
 
+    @Column(nullable = false)
     private String batimentosPorMinuto;
+    @Column(nullable = false)
     private String agitacao;
 }
