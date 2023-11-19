@@ -1,6 +1,10 @@
 package br.com.fiap.global.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,25 +42,34 @@ public class Paciente {
     private List<DadosIoT> dadosIoTList;
 
     @Column(nullable = false)
+    private String nome;
+    @Column(nullable = false)
+    @Max(value = 150)
     private String idade;
     @Column(nullable = false)
+    @Pattern(regexp = "^(masculino|feminino)$", message = "O sexo biológico deve ser 'masculino' ou 'feminino'")
     private String sexoBiologico;
     @Column(nullable = false)
+    @NotBlank
+    @Size(max = 20)
     private String genero;
     @Column(nullable = false)
+    @NotBlank @Size(max = 20)
     private String colesterol;
     @Column(nullable = false)
+    @NotBlank @Size(max = 20)
     private String triglicerol;
     @Column(nullable = false)
+    @NotBlank @Size(max = 20)
     private String diabete;
     @Column(nullable = false)
     private String historicoFamiliar;
     @Column(nullable = false)
-    private String fumante;
+    private boolean fumante = false;
     @Column(nullable = false)
-    private String obeso;
+    private boolean obeso = false;
     @Column(nullable = false)
-    private String consumoAlcool;
+    private boolean consumoAlcool = false;
     @Column(nullable = false)
     private String dieta;
     @Column(nullable = false)

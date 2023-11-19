@@ -1,6 +1,8 @@
 package br.com.fiap.global.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +29,9 @@ public class Instituicao {
     private Moderador moderador;
 
     @Column(nullable = false)
+    @NotBlank @Size(max = 20)
     private String telefone;
     @Column(nullable = false)
+    @NotBlank
     private String endereco;
 }
