@@ -3,6 +3,7 @@ package br.com.fiap.global.controller;
 import br.com.fiap.global.model.Usuario;
 import br.com.fiap.global.model.dto.Credencial;
 import br.com.fiap.global.model.dto.Token;
+import br.com.fiap.global.repository.UsuarioRepository;
 import br.com.fiap.global.service.BaseService;
 import br.com.fiap.global.service.TokenService;
 import br.com.fiap.global.service.UsuarioService;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController extends BaseController<Usuario, Long>{
@@ -27,6 +30,9 @@ public class UsuarioController extends BaseController<Usuario, Long>{
 
     @Autowired
     PasswordEncoder encoder;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
 //    @Autowired
 //    PagedResourcesAssembler<Object> assembler;
@@ -47,9 +53,15 @@ public class UsuarioController extends BaseController<Usuario, Long>{
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Token> login(@RequestBody Credencial credencial){
-        manager.authenticate(credencial.toAuthentication());
-        var token = tokenService.generateToken(credencial);
-        return ResponseEntity.ok(token);
+    public ResponseEntity<?> login(@RequestBody Credencial credencial){
+//        manager.authenticate(credencial.toAuthentication());
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(credencial.email());
+        if (usuario.isPresent()){
+            if (encoder.matches(credencial.senha(), usuario.get().getPassword())){
+                var token = tokenService.generateToken(credencial);
+                return ResponseEntity.ok(token);
+            }
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais de login incorretas");
     }
 }

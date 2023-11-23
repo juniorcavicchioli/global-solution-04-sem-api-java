@@ -34,6 +34,6 @@ public class TokenService {
                 .build()
                 .verify(token)
                 .getSubject();
-        return (Usuario) usuarioRepository.findByEmail(email).orElseThrow(() -> new JWTVerificationException("Usuário não encontrado"));
+        return usuarioRepository.findByEmail(email).orElseThrow(() -> new JWTVerificationException("Usuário não encontrado"));
     }
 }
